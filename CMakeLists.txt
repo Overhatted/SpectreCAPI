@@ -1,0 +1,17 @@
+cmake_minimum_required(VERSION 3.0.0 FATAL_ERROR)
+project(spectre_api C)
+
+add_library(spectre_api STATIC
+	aes.c
+	spectre-algorithm.c
+	spectre-algorithm_v0.c
+	spectre-algorithm_v1.c
+	spectre-algorithm_v2.c
+	spectre-algorithm_v3.c
+	spectre-marshal-util.c
+	spectre-marshal.c
+	spectre-types.c
+	spectre-util.c
+)
+
+target_include_directories(spectre_api INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
