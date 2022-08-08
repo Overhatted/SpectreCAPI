@@ -14,4 +14,6 @@ add_library(spectre_api STATIC
 	spectre-util.c
 )
 
+set_property(TARGET spectre_api PROPERTY C_STANDARD 17)
+set_property(TARGET spectre_api PROPERTY C_STANDARD_REQUIRED ON)
 target_include_directories(spectre_api INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
