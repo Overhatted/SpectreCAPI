@@ -202,7 +202,7 @@ bool spectre_id_equals(const SpectreKeyID *id1, const SpectreKeyID *id2);
 /** Encode a fingerprint for a buffer. */
 const SpectreKeyID spectre_id_buf(const uint8_t *buf, const size_t size);
 /** Reconstruct a fingerprint from its hexadecimal string representation. */
-const SpectreKeyID spectre_id_str(const char hex[static 65]);
+const SpectreKeyID spectre_id_str(const char hex[65]);
 
 /**
  * @return The standard identifying name (static) for the given algorithm or NULL if the algorithm is not known.
