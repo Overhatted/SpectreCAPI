@@ -230,8 +230,8 @@ bool spectre_string_pushf(
         do { const char *replacement_ = replacement; spectre_free_string( &string ); string = replacement_; } while (0)
 #ifdef _MSC_VER
 #undef spectre_realloc
-#define spectre_realloc(buffer, bufferSize, targetSize) \
-        __spectre_realloc( (void **)buffer, bufferSize, targetSize )
+#define spectre_realloc(buffer, bufferSize, type, /* const size_t */typeCount) \
+        __spectre_realloc( (void **)buffer, bufferSize, sizeof( type ) * (typeCount) )
 #undef spectre_free
 #define spectre_free(buffer, bufferSize) \
         __spectre_free( (void **)buffer, bufferSize )
