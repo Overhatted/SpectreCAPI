@@ -165,13 +165,13 @@ bool spectre_log_sink_file(SpectreLogEvent *event) {
     return true;
 }
 
-void spectre_uint16(const uint16_t number, uint8_t buf[static 2]) {
+void spectre_uint16(const uint16_t number, uint8_t buf[2]) {
 
     buf[0] = (uint8_t)((number >> 8L) & UINT8_MAX);
     buf[1] = (uint8_t)((number >> 0L) & UINT8_MAX);
 }
 
-void spectre_uint32(const uint32_t number, uint8_t buf[static 4]) {
+void spectre_uint32(const uint32_t number, uint8_t buf[4]) {
 
     buf[0] = (uint8_t)((number >> 24) & UINT8_MAX);
     buf[1] = (uint8_t)((number >> 16) & UINT8_MAX);
@@ -179,7 +179,7 @@ void spectre_uint32(const uint32_t number, uint8_t buf[static 4]) {
     buf[3] = (uint8_t)((number >> 0L) & UINT8_MAX);
 }
 
-void spectre_uint64(const uint64_t number, uint8_t buf[static 8]) {
+void spectre_uint64(const uint64_t number, uint8_t buf[8]) {
 
     buf[0] = (uint8_t)((number >> 56) & UINT8_MAX);
     buf[1] = (uint8_t)((number >> 48) & UINT8_MAX);
@@ -379,7 +379,7 @@ bool spectre_kdf_blake2b(uint8_t *subkey, const size_t subkeySize, const uint8_t
     return true;
 }
 
-bool spectre_hash_hmac_sha256(uint8_t mac[static 32], const uint8_t *key, const size_t keySize, const uint8_t *message, const size_t messageSize) {
+bool spectre_hash_hmac_sha256(uint8_t mac[32], const uint8_t *key, const size_t keySize, const uint8_t *message, const size_t messageSize) {
 
     if (!mac || !key || !keySize || !message || !messageSize)
         return false;
@@ -530,7 +530,7 @@ char *spectre_hex(const uint8_t *buf, const size_t size, char *hex, size_t *hexS
     return hex;
 }
 
-const char *spectre_hex_l(const uint32_t number, char hex[static 9]) {
+const char *spectre_hex_l(const uint32_t number, char hex[9]) {
 
     uint8_t buf[4 /* 32 / 8 */];
     spectre_uint32( number, buf );
