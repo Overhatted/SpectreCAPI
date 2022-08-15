@@ -217,10 +217,12 @@ const char *spectre_site_derived_password_v0(
             }
 
             // Derive key
-            uint8_t resultKey[parameter / 8];
-            trc( "keySize: %u", sizeof( resultKey ) );
-            if (!spectre_kdf_blake2b( resultKey, sizeof( resultKey ), siteKey->bytes, sizeof( siteKey->bytes ), NULL, 0, 0, NULL )) {
+            size_t keySize = parameter / 8;
+            uint8_t* resultKey = calloc(keySize, sizeof( uint8_t ) );
+            trc( "keySize: %u", keySize );
+            if (!spectre_kdf_blake2b( resultKey, keySize, siteKey->bytes, sizeof( siteKey->bytes ), NULL, 0, 0, NULL )) {
                 err( "Could not derive result key: %s", strerror( errno ) );
+                spectre_free(&resultKey, keySize);
                 return NULL;
             }
 
@@ -229,10 +231,11 @@ const char *spectre_site_derived_password_v0(
             if (spectre_base64_encode( resultKey, sizeof( resultKey ), b64Key ) < 0) {
                 err( "Base64 encoding error." );
                 spectre_free_string( &b64Key );
+                spectre_free( &resultKey, keySize );
             }
             else
                 trc( "b64 encoded -> key: %s", b64Key );
-            spectre_zero( &resultKey, sizeof( resultKey ) );
+            spectre_free( &resultKey, keySize );
 
             return b64Key;
         }
