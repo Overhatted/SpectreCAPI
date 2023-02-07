@@ -70,7 +70,7 @@ const SpectreKeyID spectre_id_buf(const uint8_t *buf, const size_t size) {
     return keyID;
 }
 
-const SpectreKeyID spectre_id_str(const char hex[static 65]) {
+const SpectreKeyID spectre_id_str(const char hex[65]) {
 
     SpectreKeyID keyID = SpectreKeyIDUnset;
 
