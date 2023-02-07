@@ -269,7 +269,7 @@ bool spectre_kdf_blake2b(
 /** Calculate the MAC for the given message with the given key using SHA256-HMAC.
  * @return A buffer (allocated, 32-byte) containing the MAC or NULL if the key or message is missing, the MAC could not be allocated or generated. */
 bool spectre_hash_hmac_sha256(
-        uint8_t mac[static 32], const uint8_t *key, const size_t keySize, const uint8_t *message, const size_t messageSize);
+        uint8_t mac[32], const uint8_t *key, const size_t keySize, const uint8_t *message, const size_t messageSize);
 /** Encrypt a plainBuffer with the given key using AES-128-CBC.
  * @param bufferSize A pointer to the size of the plain buffer on input, and the size of the returned cipher buffer on output.
  * @return A buffer (allocated, bufferSize) containing the cipherBuffer or NULL if the key or buffer is missing, the key size is out of bounds or the result could not be allocated. */
@@ -298,7 +298,7 @@ const char *spectre_vstr(const char *format, va_list args);
  * @param hex If not NULL, use it to store the hexadecimal characters.  Will be realloc'ed if it isn't large enough.  Result is returned.
  * @return A C-string (allocated, size * 2 + 1 bytes); NULL if the buffer is missing or the result could not be allocated. */
 char *spectre_hex(const uint8_t *buf, const size_t size, char *hex, size_t *hexSize);
-const char *spectre_hex_l(const uint32_t number, char hex[static 9]);
+const char *spectre_hex_l(const uint32_t number, char hex[9]);
 /** Decode a C-string of hexadecimal characters into a buffer of size-bytes.
  * @return A buffer (allocated, *size); or NULL if hex is NULL, empty, or not an even-length hexadecimal string. */
 const uint8_t *spectre_unhex(const char *hex, size_t *size);
